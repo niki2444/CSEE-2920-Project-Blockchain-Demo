@@ -1,5 +1,4 @@
-Nikolay Neykov
-811992825
+N. Neykov
 Blockchain Demo
 
 Demoing the blockchain comes in a way that gives a lot of power to the user. I have built a menu that allows the user to:
