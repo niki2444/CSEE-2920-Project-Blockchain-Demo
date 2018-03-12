@@ -1,0 +1,56 @@
+Nikolay Neykov
+811992825
+Blockchain Demo
+
+Demoing the blockchain comes in a way that gives a lot of power to the user. I have built a menu that allows the user to:
+Print the blockchain - If the user types ‘print’, the whole blockchain will be printed. This includes every block (including the genesis block) and each one’s transaction message (data) with the hash involved too. This is important because every time you change something, you can see the corresponding changes in the hashes very easily. 
+Add a block to the blockchain - If the user types ‘add’, then they must enter a transaction message. For example: “Mary gives Rob $10”. Then, the program will use SHA256 to hash. Once that is done, more blocks can be added, then printed to see the hashes. 
+Change a block on the blockchain - This is the most useful function that I have implemented because it allows you to go into any block on the blockchain (except the genesis block) and alter the message inside - similar to what an intruder may do if they are trying to cheat the system. For example, if Rob wants more money and wants to cheat Mary out of it, then if he changes the value to say, $15 now, then we can use the print command to notice the changes to all the hash values on and after the block that the change was done to. This is the perfect demo of a blockchain because it allows for these characteristics to be noticed on the blockchain.
+Quit - Ctrl-C or ‘quit’ will terminate the program.
+
+Furthermore, the included ReadMe.txt inside the directory will include compilation instructions and a Makefile. The makefile allows easy commands to compile:
+
+When inside the directory, simply type ‘make’ and the program will compile and link ALL of the code together. 
+Then, you may easily run the program with ‘./main’. This is execute the program and bring on the main menu (instructions found above). Then, use the above commands (also listed in the ReadMe.txt) to operate and run tests on how a blockchain works.
+To clean up unnecessary files after testing, simply type ‘make clean’ to automatically return things to normal.
+
+Since I am operating on the SHA256 hashing algorithm, the hash values may be compared to online sources. For example, I have found SHA256 Youtube videos that have a blank transaction message and bring on the same hash value. Why? Because a hash is simply a digital signature of a message. Therefore, identical messages will have the same hash. This is important because if the hash changes every time, then we have no way of keeping track of the messages on a blockchain. Lastly, we do not need a proof of work algorithm for the code because we will not need to ‘mine’ the blocks. For simple data communications between 2 small objects, we will not need to prove the blocks; rather, we will just communicate the transaction messages.
+
+WORK CITATION - ALL SHA256 WORK BELONGS TO:
+
+/*
+ * Updated to C++, zedwood.com 2012
+ * Based on Olivier Gay's version
+ * See Modified BSD License below: 
+ *
+ * FIPS 180-2 SHA-224/256/384/512 implementation
+ * Issue date:  04/30/2005
+ * http://www.ouah.org/ogay/sha2/
+ *
+ * Copyright (C) 2005, 2007 Olivier Gay <olivier.gay@a3.epfl.ch>
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. Neither the name of the project nor the names of its contributors
+ *    may be used to endorse or promote products derived from this software
+ *    without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE PROJECT AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE PROJECT OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */

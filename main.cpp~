@@ -1,0 +1,95 @@
+#include <fstream>
+#include "sha256.h"
+#include "block.h"
+#include <cstdlib>
+#include <iostream>
+#include <string>
+#include <cctype>
+#include <cstring>
+#include <vector>
+
+using namespace std;
+
+int main() {
+
+  cout << "Welcome to Nikolay's BlockChain demo!" << endl;
+  cout << "Type 'print' to print the blockchain." << endl;
+  cout << "Type 'add' to add a block to the blockchain." << endl;
+  cout << "Type 'change' to change a block's transactions to see how it affects the whole blockchain." << endl;
+  cout << "Type 'quit' to quit." << endl;
+  cout << "The Genesis Block has been created for you." << endl;
+  
+  vector<block> blockChain;
+
+  string genesisTransactions = "";
+  block genesisBlock("", genesisTransactions);
+  blockChain.push_back(genesisBlock);
+
+  string temp1;
+  int temp2;
+
+  string command;
+  cin >> command;
+  while (command != "quit") {
+      if (command == "print") {
+	for (unsigned int i = 0; i < blockChain.size(); i++) {
+	  cout << "Block " << i << " transaction: " << blockChain[i].getTransactions() << endl;
+	  cout << "Block " << i << " hash: " << blockChain[i].getBlockHash() << endl;
+	}
+      }
+      else if (command == "change") {
+	cout << "Please enter which block you want to change from 1 to " << blockChain.size()-1 << "." << endl;
+	cin >> temp2;
+	cout << "Now enter the new transaction. " << endl;
+	cin.ignore();
+	getline(cin, temp1);
+	blockChain[temp2].setTransactions(temp1);
+	for (unsigned int i = temp2; i < blockChain.size(); i++) {
+	  blockChain[i].setHash(blockChain[i-1].getBlockHash(), blockChain[i].getTransactions());
+	}
+	cout << "Change completed. " << endl;
+      }
+      else if (command == "add") {
+	cout << "Please enter transaction you want to make: " << endl;
+	cin.ignore();
+	getline(cin, temp1);
+	block temp(blockChain[blockChain.size()-1].getBlockHash(), temp1);
+	blockChain.push_back(temp);
+	cout << "Transaction completed on blockchain. " << endl;
+      }
+      else {
+	cout << "Undefined command. Please try again!" << endl;
+      }
+      cout << "Enter a command..." << endl;
+      cin >> command;
+  }
+
+
+
+  string block2Transactions = "asddd";
+  block block2(genesisBlock.getBlockHash(), block2Transactions);
+
+  string block3Transactions = "Dad";
+  block block3(block2.getBlockHash(), block3Transactions);
+
+  cout << "Hash of genesis block: " << genesisBlock.getBlockHash() << endl;
+  cout << "Hash of block 2: " << block2.getBlockHash() << endl;
+  cout << "Hash of block 3: " << block3.getBlockHash() << endl;
+
+  /**
+  int number;
+  string command;
+  int datatype;
+  // Prompt user to enter type of elements
+  cout << "Enter Elements Type\n1 for integer\n2 for character\n3 for Student\n";
+  cin >> datatype;
+  switch (datatype) {
+  case 1: testIntegersList();
+    break;
+  case 2: testCharactersList();
+    break;
+  case 3: testStudentsList();
+    break;
+  }
+  */
+}
